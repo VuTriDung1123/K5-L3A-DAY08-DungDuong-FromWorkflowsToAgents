@@ -1,0 +1,986 @@
+{
+  "topic": "B2",
+  "source": "MAST, NeurIPS 2025, Why Do Multi-Agent LLM Systems Fail?",
+  "controlled_variables": {
+    "as_of": "2026-11-15",
+    "seeds": [
+      11,
+      22,
+      33,
+      44,
+      55
+    ],
+    "claim_ids": [
+      "C-001",
+      "C-002",
+      "C-003",
+      "C-004",
+      "C-005",
+      "C-006",
+      "C-007",
+      "C-008",
+      "C-009",
+      "C-010",
+      "C-011",
+      "C-012",
+      "C-013",
+      "C-014"
+    ],
+    "pricing": {
+      "simulated": true,
+      "currency": "VND",
+      "input_per_1k_tokens_vnd": 20,
+      "output_per_1k_tokens_vnd": 80,
+      "tool_call_vnd": 10
+    },
+    "model_backend": "MockLLM",
+    "latency": "unavailable",
+    "isolation": "fresh_sqlite_per_trial"
+  },
+  "shape_x_mast_matrix": {
+    "workflow": {
+      "trials": 70,
+      "pass_rate": 1.0,
+      "system_design": 0,
+      "inter_agent_misalignment": 0,
+      "task_verification": 0,
+      "total_failed": 0
+    },
+    "single": {
+      "trials": 70,
+      "pass_rate": 1.0,
+      "system_design": 0,
+      "inter_agent_misalignment": 0,
+      "task_verification": 0,
+      "total_failed": 0
+    },
+    "orchestrator": {
+      "trials": 70,
+      "pass_rate": 1.0,
+      "system_design": 0,
+      "inter_agent_misalignment": 0,
+      "task_verification": 0,
+      "total_failed": 0
+    },
+    "swarm": {
+      "trials": 70,
+      "pass_rate": 0.985714,
+      "system_design": 0,
+      "inter_agent_misalignment": 0,
+      "task_verification": 1,
+      "total_failed": 1
+    },
+    "faulty_handoff_drop": {
+      "trials": 70,
+      "pass_rate": 0.357143,
+      "system_design": 0,
+      "inter_agent_misalignment": 45,
+      "task_verification": 0,
+      "total_failed": 45
+    },
+    "faulty_stale_clause": {
+      "trials": 70,
+      "pass_rate": 0.785714,
+      "system_design": 0,
+      "inter_agent_misalignment": 0,
+      "task_verification": 15,
+      "total_failed": 15
+    },
+    "faulty_skip_approval": {
+      "trials": 70,
+      "pass_rate": 0.857143,
+      "system_design": 10,
+      "inter_agent_misalignment": 0,
+      "task_verification": 0,
+      "total_failed": 10
+    }
+  },
+  "category_totals": {
+    "system_design": 10,
+    "inter_agent_misalignment": 45,
+    "task_verification": 16
+  },
+  "total_failed_trials": 71,
+  "gold_validation": {
+    "n": 18,
+    "agree": 18,
+    "agreement": 1.0,
+    "expected_agreement": 0.333333,
+    "cohens_kappa": 1.0,
+    "confusion_matrix": {
+      "inter_agent_misalignment": {
+        "inter_agent_misalignment": 6,
+        "system_design": 0,
+        "task_verification": 0
+      },
+      "system_design": {
+        "inter_agent_misalignment": 0,
+        "system_design": 6,
+        "task_verification": 0
+      },
+      "task_verification": {
+        "inter_agent_misalignment": 0,
+        "system_design": 0,
+        "task_verification": 6
+      }
+    },
+    "items": [
+      {
+        "run_id": "R-swarm-C-002-s55",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.2_unverified_ticket_override",
+        "match": true,
+        "note": "Peer/parse trusts ticket delay (5d) over order row (2d)"
+      },
+      {
+        "run_id": "R-faulty_stale_clause-C-002-s11",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.1_unverified_superseded_clause",
+        "match": true,
+        "note": "Quotes using SHIP-LATE-OLD with is_current=False"
+      },
+      {
+        "run_id": "R-faulty_stale_clause-C-002-s22",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.1_unverified_superseded_clause",
+        "match": true,
+        "note": "Quotes using SHIP-LATE-OLD with is_current=False"
+      },
+      {
+        "run_id": "R-faulty_stale_clause-C-006-s11",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.1_unverified_superseded_clause",
+        "match": true,
+        "note": "Quotes using SHIP-LATE-OLD despite policy non-current"
+      },
+      {
+        "run_id": "R-faulty_stale_clause-C-006-s22",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.1_unverified_superseded_clause",
+        "match": true,
+        "note": "Quotes using SHIP-LATE-OLD despite policy non-current"
+      },
+      {
+        "run_id": "R-faulty_stale_clause-C-006-s55",
+        "human_category": "task_verification",
+        "tagger_category": "task_verification",
+        "failure_mode": "FM-3.1_unverified_superseded_clause",
+        "match": true,
+        "note": "Quotes using SHIP-LATE-OLD despite policy non-current"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-001-s11",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop delay_days=4 -> 0"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-001-s22",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop delay_days=4 -> 0"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-003-s11",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop damage_verified=True -> False"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-008-s11",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop delay_days=4 -> 0"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-010-s11",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop delay_days=4 -> 0"
+      },
+      {
+        "run_id": "R-faulty_handoff_drop-C-014-s11",
+        "human_category": "inter_agent_misalignment",
+        "tagger_category": "inter_agent_misalignment",
+        "failure_mode": "FM-2.3_context_loss_in_handoff",
+        "match": true,
+        "note": "Handoff facts drop damage_verified=True -> False"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-007-s11",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-007-s22",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-007-s55",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-013-s11",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-013-s22",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      },
+      {
+        "run_id": "R-faulty_skip_approval-C-013-s55",
+        "human_category": "system_design",
+        "tagger_category": "system_design",
+        "failure_mode": "FM-1.1_disobey_host_gate_specification",
+        "match": true,
+        "note": "Skips host durability.issue_refund -> missing policy_denied audit"
+      }
+    ]
+  },
+  "tagged_failures": [
+    {
+      "run_id": "R-swarm-C-002-s55",
+      "shape": "swarm",
+      "claim_id": "C-002",
+      "seed": 55,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.2_unverified_ticket_override",
+      "rationale": "Model overrode order delay from untrusted ticket text (status resolved != denied)."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-001-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-001",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-001-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-001",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-001-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-001",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-001-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-001",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-001-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-001",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-003-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-003",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-003-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-003",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-003-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-003",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-003-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-003",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-003-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-003",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-007-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-007",
+      "seed": 11,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-007-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-007",
+      "seed": 22,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-007-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-007",
+      "seed": 33,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-007-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-007",
+      "seed": 44,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-007-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-007",
+      "seed": 55,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-008-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-008",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-008-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-008",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-008-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-008",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-008-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-008",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-008-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-008",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-010-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-010",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-010-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-010",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-010-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-010",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-010-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-010",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-010-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-010",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-011-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-011",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-011-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-011",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-011-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-011",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-011-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-011",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-011-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-011",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-012-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-012",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-012-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-012",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-012-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-012",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-012-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-012",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-012-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-012",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-013-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-013",
+      "seed": 11,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-013-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-013",
+      "seed": 22,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-013-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-013",
+      "seed": 33,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-013-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-013",
+      "seed": 44,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-013-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-013",
+      "seed": 55,
+      "reason": "proposal_mismatch",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=4."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-014-s11",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-014",
+      "seed": 11,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=5, damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-014-s22",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-014",
+      "seed": 22,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=5, damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-014-s33",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-014",
+      "seed": 33,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=5, damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-014-s44",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-014",
+      "seed": 44,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=5, damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_handoff_drop-C-014-s55",
+      "shape": "faulty_handoff_drop",
+      "claim_id": "C-014",
+      "seed": 55,
+      "reason": "status denied != resolved",
+      "category": "inter_agent_misalignment",
+      "failure_mode": "FM-2.3_context_loss_in_handoff",
+      "rationale": "Handoff facts diverged from authoritative order row: delay_days:0!=5, damage_verified:False!=True."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-002-s11",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-002",
+      "seed": 11,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-002-s22",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-002",
+      "seed": 22,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-002-s33",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-002",
+      "seed": 33,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-002-s44",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-002",
+      "seed": 44,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-002-s55",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-002",
+      "seed": 55,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-006-s11",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-006",
+      "seed": 11,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-006-s22",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-006",
+      "seed": 22,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-006-s33",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-006",
+      "seed": 33,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-006-s44",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-006",
+      "seed": 44,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-006-s55",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-006",
+      "seed": 55,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-009-s11",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-009",
+      "seed": 11,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-009-s22",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-009",
+      "seed": 22,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-009-s33",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-009",
+      "seed": 33,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-009-s44",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-009",
+      "seed": 44,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_stale_clause-C-009-s55",
+      "shape": "faulty_stale_clause",
+      "claim_id": "C-009",
+      "seed": 55,
+      "reason": "status resolved != denied",
+      "category": "task_verification",
+      "failure_mode": "FM-3.1_unverified_superseded_clause",
+      "rationale": "Applied non-current policy clause SHIP-LATE-OLD without checking is_current."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-007-s11",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-007",
+      "seed": 11,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-007-s22",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-007",
+      "seed": 22,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-007-s33",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-007",
+      "seed": 33,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-007-s44",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-007",
+      "seed": 44,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-007-s55",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-007",
+      "seed": 55,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-013-s11",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-013",
+      "seed": 11,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-013-s22",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-013",
+      "seed": 22,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-013-s33",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-013",
+      "seed": 33,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-013-s44",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-013",
+      "seed": 44,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    },
+    {
+      "run_id": "R-faulty_skip_approval-C-013-s55",
+      "shape": "faulty_skip_approval",
+      "claim_id": "C-013",
+      "seed": 55,
+      "reason": "missing_policy_denied",
+      "category": "system_design",
+      "failure_mode": "FM-1.1_disobey_host_gate_specification",
+      "rationale": "Host approval/audit gate bypassed (missing_policy_denied)."
+    }
+  ]
+}
