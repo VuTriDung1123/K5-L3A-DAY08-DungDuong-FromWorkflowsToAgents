@@ -30,7 +30,7 @@ Gợi ý chia vai:
 
 | Người | Vai | Commit | Test đã thêm hoặc sửa |
 | ----- | --- | ------ | --------------------- |
-| Vũ Trí Dũng (`2A202603478`) | Nhóm trưởng; Shape A (`workflow`), Shape B (`single`), Benchmark & Báo cáo | `97dd89d`, `f829fc7` | `src/tests/test_shapes_workflow_single.py` (25 test cases cho `workflow` & `single`); chạy `pytest -q` (79 passed) & `-m student` |
+| Vũ Trí Dũng (`2A202603478`) | Nhóm trưởng; Shape A (`workflow`), Shape B (`single`), Benchmark, Bonus B2 & Báo cáo | `97dd89d`, `f829fc7` | `src/tests/test_shapes_workflow_single.py` (25 test), `src/tests/test_bonus_mast.py` (9 test); chạy `pytest -q` (88 passed) & `-m student` |
 | Khổng Tiến Dương (`2A202603467`) | Shape C (`orchestrator`), Handoff & Trace sanitize | `a036fbb` | `src/tests/test_public_matrix.py` (`orchestrator`: 62/62 passed khi chạy `-m student`) |
 | Phạm Quang Trường (`2A202603378`) | Crash safety verification (CP4) | `b99e06a` | `python -m lab8.crash_test --count 20 --out reports/crash.json` (20/20 passed, `CR-01`..`CR-20`) |
 
