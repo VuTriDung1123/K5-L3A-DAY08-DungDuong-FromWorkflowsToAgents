@@ -9,10 +9,11 @@
 
 ## Thành viên
 
-| STT | Họ tên           | MSSV        | Email                      | GitHub                | Vai trò |
-| --: | ---------------- | ----------- | -------------------------- | --------------------- | ------- |
-|   1 | Vũ Trí Dũng      | 2A202603478 | dungvutri25@gmail.com      | VuTriDung1123         | Nhóm trưởng; Integration, Shape A (`workflow`), Shape B (`single`), Trace/ADR |
-|   2 | Khổng Tiến Dương | 2A202603467 | khongtienduongcv@gmail.com | khongtienduongcv-byte | Shape C (`orchestrator`), Handoff/Durability/Crash, Benchmark & Research Card |
+| STT | Họ tên            | MSSV        | Email                      | GitHub                | Vai trò                                                                       |
+| --: | ----------------- | ----------- | -------------------------- | --------------------- | ----------------------------------------------------------------------------- |
+|   1 | Vũ Trí Dũng       | 2A202603478 | dungvutri25@gmail.com      | VuTriDung1123         | Nhóm trưởng; Integration, Shape A (`workflow`), Shape B (`single`), Trace/ADR |
+|   2 | Khổng Tiến Dương  | 2A202603467 | khongtienduongcv@gmail.com | khongtienduongcv-byte | Shape C (`orchestrator`), Handoff/Durability/Crash, Benchmark & Research Card |
+|   3 | Phạm Quang Trường | 2A202603378 | truongpham090325@gmail.com | truongpham090325      |                                                                               |
 
 Gợi ý chia vai:
 
